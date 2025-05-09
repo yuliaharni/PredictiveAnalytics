@@ -42,9 +42,50 @@ Dataset ini diperoleh dari Kaggle Financial Dataset (https://www.kaggle.com/data
 
 ### Jumlah Data
 Dataset memiliki:
-Jumlah baris: 3905 baris
-Jumlah kolom awal: 45 kolom
+Jumlah baris: 3904 baris
+Jumlah kolom awal:  47 kolom
 Jumlah kolom yang digunakan: 10 kolom
+
+Berikut fitur - fitur yang terdapat pada dataset
+| **Fitur**              | **Deskripsi**                                           |
+|------------------------|----------------------------------------------------------|
+| `date`                 | Tanggal data dicatat                                     |
+| `sp500 open`           | Harga pembukaan indeks S&P 500                           |
+| `sp500 high`           | Harga tertinggi indeks S&P 500                           |
+| `sp500 low`            | Harga terendah indeks S&P 500                            |
+| `sp500 close`          | Harga penutupan indeks S&P 500                           |
+| `sp500 volume`         | Volume perdagangan S&P 500                               |
+| `sp500 high-low`       | Selisih harga tertinggi dan terendah S&P 500            |
+| `nasdaq open`          | Harga pembukaan Nasdaq                                   |
+| `nasdaq high`          | Harga tertinggi Nasdaq                                   |
+| `nasdaq low`           | Harga terendah Nasdaq                                    |
+| `nasdaq close`         | Harga penutupan Nasdaq                                   |
+| `nasdaq volume`        | Volume perdagangan Nasdaq                                |
+| `nasdaq high-low`      | Selisih harga tertinggi dan terendah Nasdaq             |
+| `platinum open`        | Harga pembukaan Platinum                                 |
+| `platinum high`        | Harga tertinggi Platinum                                 |
+| `platinum low`         | Harga terendah Platinum                                  |
+| `platinum close`       | Harga penutupan Platinum                                 |
+| `platinum volume`      | Volume perdagangan Platinum                              |
+| `platinum high-low`    | Selisih harga tertinggi dan terendah Platinum           |
+| `silver open`          | Harga pembukaan Silver                                   |
+| `silver high`          | Harga tertinggi Silver                                   |
+| `silver low`           | Harga terendah Silver                                    |
+| `silver close`         | Harga penutupan Silver                                   |
+| `silver volume`        | Volume perdagangan Silver                                |
+| `silver high-low`      | Selisih harga tertinggi dan terendah Silver             |
+| `crude oil open`       | Harga pembukaan Crude Oil                                |
+| `crude oil high`       | Harga tertinggi Crude Oil                                |
+| `crude oil low`        | Harga terendah Crude Oil                                 |
+| `crude oil close`      | Harga penutupan Crude Oil                                |
+| `crude oil volume`     | Volume perdagangan Crude Oil                             |
+| `crude oil high-low`   | Selisih harga tertinggi dan terendah Crude Oil          |
+| `copper open`          | Harga pembukaan Copper                                   |
+| `copper high`          | Harga tertinggi Copper                                   |
+| `copper low`           | Harga terendah Copper                                    |
+| `copper close`         | Harga penutupan Copper                                   |
+| `copper volume`        | Volume perdagangan Copper
+
 
 ### Kondisi Data:
 #### Missing Values:
@@ -59,79 +100,102 @@ Tidak ditemukan data duplikat.
 
 
 # Data Preparation
-- Seleksi Fitur
-    Dari total 45 fitur, hanya 10 fitur yang dipilih berdasarkan relevansi terhadap harga emas. Fitur-fitur ini mencakup informasi harga emas itu sendiri serta faktor eksternal seperti 
-    indeks saham dan nilai tukar mata uang yang dinilai dapat memengaruhi harga emas.
-    #### Uraian Seluruh Fitur pada Dataset
-    Dataset awal terdiri dari 45 fitur, berikut adalah deskripsi singkat fitur-fitur utamanya:
-    
-    💰 Harga Emas
-    gold open: Harga pembukaan emas pada hari tersebut
-    
-    gold high: Harga tertinggi emas pada hari tersebut
-    
-    gold low: Harga terendah emas pada hari tersebut
-    
-    gold close: Harga penutupan emas pada hari tersebut (target yang diprediksi)
-    
-    gold volume: Volume perdagangan emas
-    
-    📈 Indeks Pasar Saham
-    sp500 close: Harga penutupan indeks S&P 500
-    
-    nasdaq close: Harga penutupan indeks NASDAQ
-    
-    💱 Nilai Tukar Mata Uang
-    usd_chf: Kurs USD terhadap Franc Swiss
-    
-    eur_usd: Kurs Euro terhadap USD
 
-- Handling Missing Values
-    Dataset memiliki missing values terutama pada kolom harga dan volume emas serta kurs mata uang:
-    
-    Kolom gold open, gold high, gold low, gold close, gold volume: 185 missing values
-    
-    Kolom usd_chf, eur_usd: 210 missing values
-    
-    Solusi:
-    Baris-baris yang mengandung missing values dihapus agar model tidak terganggu oleh data yang tidak lengkap.
+## Seleksi Fitur
 
-- Handling Outliers
-    Outlier dicek menggunakan metode Interquartile Range (IQR). Namun, karena data harga emas sangat fluktuatif secara alami, outlier tidak dihapus, agar tetap merepresentasikan kondisi     pasar yang sesungguhnya.
-- Konversi Tipe Data
+Dari total 47 fitur, hanya 10 fitur yang dipilih berdasarkan relevansi terhadap harga emas. Fitur-fitur ini mencakup informasi harga emas itu sendiri serta faktor eksternal seperti 
+indeks saham dan nilai tukar mata uang yang dinilai dapat memengaruhi harga emas.
+    
+#### Uraian Seluruh Fitur pada Dataset
+Dataset awal terdiri dari 45 fitur, berikut adalah deskripsi singkat fitur-fitur utamanya:
+    
+💰 Harga Emas
+gold open: Harga pembukaan emas pada hari tersebut
+    
+gold high: Harga tertinggi emas pada hari tersebut
+    
+gold low: Harga terendah emas pada hari tersebut
+    
+gold close: Harga penutupan emas pada hari tersebut (target yang diprediksi)
+    
+gold volume: Volume perdagangan emas
+    
+📈 Indeks Pasar Saham
+sp500 close: Harga penutupan indeks S&P 500
+    
+nasdaq close: Harga penutupan indeks NASDAQ
+    
+💱 Nilai Tukar Mata Uang
+usd_chf: Kurs USD terhadap Franc Swiss
+    
+eur_usd: Kurs Euro terhadap USD
+
+## Handling Missing Values
+
+Dataset memiliki missing values terutama pada kolom harga dan volume emas serta kurs mata uang:
+Kolom gold open, gold high, gold low, gold close, gold volume: 185 missing values
+Kolom usd_chf, eur_usd: 210 missing values
+Solusi:
+Baris-baris yang mengandung missing values dihapus agar model tidak terganggu oleh data yang tidak lengkap.
+
+## Handling Outliers
+
+Outlier dicek menggunakan metode Interquartile Range (IQR). Namun, karena data harga emas sangat fluktuatif secara alami, outlier tidak dihapus, agar tetap merepresentasikan kondisi     pasar yang sesungguhnya.
+
+## Konversi Tipe Data
+
 Kolom date dikonversi menjadi tipe datetime untuk memudahkan analisis waktu bila diperlukan.
-- Split Data
-  Data dibagi menjadi data latih dan data uji:
-  
-  80% data digunakan untuk training
-  
-  20% data digunakan untuk testing
 
-- Feature Scaling
-  Tidak dilakukan feature scaling karena model yang digunakan (Random Forest Regressor) tidak sensitif terhadap skala fitur.
+## Split Data
 
-## Modeling
+Data dibagi menjadi data latih dan data uji:
+80% data digunakan untuk training
+20% data digunakan untuk testing
 
-Model yang digunakan dalam proyek ini adalah **Random Forest Regressor**, sebuah algoritma yang sering digunakan untuk masalah regresi. Algoritma ini bekerja dengan cara membangun banyak pohon keputusan dan mengambil rata-rata dari hasil prediksi pohon-pohon tersebut. Hal ini dapat mengurangi risiko overfitting dan memberikan hasil prediksi yang lebih stabil.
+## Feature Scaling
+Tidak dilakukan feature scaling karena model yang digunakan (Random Forest Regressor) tidak sensitif terhadap skala fitur.
+## Pemisahan Fitur dan Target
+Setelah fitur-fitur penting berhasil dipilih melalui proses feature selection, langkah selanjutnya adalah memisahkan antara fitur (X) dan target (y).
+- Fitur (X) adalah sekumpulan variabel independen yang digunakan sebagai input model untuk memprediksi sesuatu. Dalam konteks ini, fitur berisi informasi-informasi pasar seperti harga pembukaan, penutupan, volume perdagangan, dan selisih harga dari indeks seperti S&P 500, Nasdaq, serta komoditas lain seperti perak, platinum, minyak mentah, dan sebagainya.
+- Target (y) adalah variabel dependen atau nilai yang ingin kita prediksi. Dalam proyek ini, target yang diprediksi adalah harga penutupan emas (gold close), karena emas merupakan indikator utama yang ingin dianalisis pergerakannya.
 
-### Hyperparameter Tuning
+## Model Development
 
-Untuk meningkatkan performa model, dilakukan **hyperparameter tuning** menggunakan **GridSearchCV**. Beberapa parameter yang dioptimalkan adalah:
+Pada tahap pengembangan model, kami memulai dengan menggunakan model **RandomForestRegressor** tanpa tuning hyperparameter. Model ini memiliki parameter default yang digunakan untuk membangun pohon keputusan secara acak. Berikut adalah langkah-langkah yang diambil dalam pengembangan model:
 
+### Model Awal (Sebelum Tuning)
+
+Pada awalnya, kami menggunakan **RandomForestRegressor** dengan parameter default sebagai berikut:
+- `n_estimators=100`: Jumlah pohon yang digunakan dalam hutan.
+- `max_depth=None`: Tidak ada batasan kedalaman pohon.
+- `min_samples_split=2`: Minimum jumlah sampel yang diperlukan untuk membagi node.
+- `min_samples_leaf=1`: Minimum jumlah sampel yang diperlukan di daun pohon.
+
+Setelah model awal dibangun dan dilakukan evaluasi, kami melihat bahwa meskipun model memberikan hasil yang cukup baik, terdapat peluang untuk memperbaiki performa dengan melakukan tuning hyperparameter.
+
+### Tuning Hyperparameter dengan GridSearchCV
+
+Untuk meningkatkan performa model, kami melakukan **hyperparameter tuning** menggunakan **GridSearchCV**. GridSearchCV mencoba berbagai kombinasi parameter yang telah ditentukan, dan memilih parameter terbaik berdasarkan evaluasi cross-validation. Berikut adalah parameter yang dituning:
 - `n_estimators`: Jumlah pohon dalam hutan.
 - `max_depth`: Kedalaman maksimum pohon.
-- `min_samples_split`: Jumlah minimum sampel untuk membagi node.
-- `min_samples_leaf`: Jumlah minimum sampel di ujung daun.
+- `min_samples_split`: Minimum sampel untuk membagi node.
+- `min_samples_leaf`: Minimum sampel di daun pohon.
 
-Setelah melakukan tuning, model terbaik ditemukan dengan kombinasi parameter:
-- `n_estimators = 200`
-- `max_depth = None`
-- `min_samples_split = 2`
-- `min_samples_leaf = 1`
+Setelah tuning menggunakan **GridSearchCV**, parameter terbaik yang ditemukan adalah:
+- `n_estimators=200`
+- `max_depth=None`
+- `min_samples_split=2`
+- `min_samples_leaf=1`
+
+### Evaluasi Model Setelah Tuning
+Setelah melakukan tuning, model yang telah diperbarui menunjukkan hasil evaluasi yang lebih baik, dengan **R2 Score** mencapai 0.98, menunjukkan bahwa model ini mampu menjelaskan sebagian besar variasi dalam data. Berikut adalah metrik evaluasi setelah tuning:
+- MAE: 2.3760134593503346
+- MSE: 13.481026697290908
+- RMSE: 3.6716517668878823
+- R2 Score: 0.9830551395542989
+
 
 ## Evaluation
-
-Evaluation
 📏 Evaluation Metrics
 Untuk mengevaluasi performa model dalam memprediksi harga penutupan emas (gold close), digunakan beberapa metrik regresi berikut:
 
