@@ -103,7 +103,7 @@ Tidak ditemukan data duplikat.
 
 ## Seleksi Fitur
 
-Dari total 47 fitur, hanya 10 fitur yang dipilih berdasarkan relevansi terhadap harga emas. Fitur-fitur ini mencakup informasi harga emas itu sendiri serta faktor eksternal seperti 
+Dari total 47 fitur, hanya 9 fitur yang dipilih berdasarkan relevansi terhadap harga emas. Fitur-fitur ini mencakup informasi harga emas itu sendiri serta faktor eksternal seperti 
 indeks saham dan nilai tukar mata uang yang dinilai dapat memengaruhi harga emas.
     
 #### Uraian Seluruh Fitur pada Dataset
@@ -150,12 +150,9 @@ Setelah fitur-fitur penting berhasil dipilih melalui proses feature selection, l
 - Fitur (X) adalah sekumpulan variabel independen yang digunakan sebagai input model untuk memprediksi sesuatu. Dalam konteks ini, fitur berisi informasi-informasi pasar seperti harga pembukaan, penutupan, volume perdagangan, dan selisih harga dari indeks seperti S&P 500, Nasdaq, serta komoditas lain seperti perak, platinum, minyak mentah, dan sebagainya.
 - Target (y) adalah variabel dependen atau nilai yang ingin kita prediksi. Dalam proyek ini, target yang diprediksi adalah harga penutupan emas (gold close), karena emas merupakan indikator utama yang ingin dianalisis pergerakannya.
 ## Split Data
-
 Data dibagi menjadi data latih dan data uji:
 80% data digunakan untuk training
 20% data digunakan untuk testing
-
-
 ## Model Development
 
 ### Random Forest Regressor
@@ -169,20 +166,6 @@ Model pertama yang digunakan adalah RandomForestRegressor dengan parameter defau
 - `min_samples_leaf=1`
 - `random_state=42`
 
-Setelah itu, dilakukan **hyperparameter tuning** menggunakan GridSearchCV untuk mencari kombinasi parameter terbaik. Parameter yang dicoba:
-- `n_estimators`: [50, 100, 200]
-- `max_depth`: [None, 10, 20]
-- `min_samples_split`: [2, 5]
-- `min_samples_leaf`: [1, 2]
-
-Hasil terbaik dari tuning menghasilkan model dengan:
-- `n_estimators=200`
-- `max_depth=None`
-- `min_samples_split=2`
-- `min_samples_leaf=1`
-
-Model ini digunakan untuk prediksi akhir karena memberikan performa yang lebih baik dibandingkan model awal dengan parameter default.
-
 ## Evaluation
 ### Metrik Evaluasi yang Digunakan
 
@@ -191,7 +174,7 @@ Model ini digunakan untuk prediksi akhir karena memberikan performa yang lebih b
 - **RMSE (Root Mean Squared Error)**: Akar dari MSE, memberikan interpretasi error dalam satuan yang sama dengan target.
 - **R² Score (Coefficient of Determination)**: Mengukur seberapa baik variasi data target dijelaskan oleh model. Nilai mendekati 1 menandakan model yang sangat baik.
 
-### Skema 1: Base Model (Tanpa Tuning)
+### Skema : Base Model 
 
 Model Random Forest Regressor digunakan dengan parameter default (tanpa tuning). Berikut adalah hasil evaluasinya:
 
@@ -205,7 +188,7 @@ Model Random Forest Regressor digunakan dengan parameter default (tanpa tuning).
 
 - Nilai MAE dan RMSE yang rendah menunjukkan bahwa prediksi model cukup akurat dan tidak jauh meleset dari nilai aktual.
 
-- Nilai R² Score sebesar 0.99 menunjukkan bahwa model mampu menjelaskan lebih dari 98% variabilitas dari harga emas.
+- Nilai R² Score sebesar 0.99 menunjukkan bahwa model mampu menjelaskan lebih dari 99% variabilitas dari harga emas.
 
 ### Visualisasi
 
