@@ -44,7 +44,7 @@ Dataset ini diperoleh dari Kaggle Financial Dataset (https://www.kaggle.com/data
 Dataset memiliki:
 Jumlah baris: 3904 baris
 Jumlah kolom awal:  47 kolom
-Jumlah kolom yang digunakan: 10 kolom
+Jumlah kolom yang digunakan: 9 kolom
 
 Berikut fitur - fitur yang terdapat pada dataset
 | **Fitur**              | **Deskripsi**                                           |
@@ -145,84 +145,74 @@ Outlier dicek menggunakan metode Interquartile Range (IQR). Namun, karena data h
 ## Konversi Tipe Data
 
 Kolom date dikonversi menjadi tipe datetime untuk memudahkan analisis waktu bila diperlukan.
-
+## Pemisahan Fitur dan Target
+Setelah fitur-fitur penting berhasil dipilih melalui proses feature selection, langkah selanjutnya adalah memisahkan antara fitur (X) dan target (y).
+- Fitur (X) adalah sekumpulan variabel independen yang digunakan sebagai input model untuk memprediksi sesuatu. Dalam konteks ini, fitur berisi informasi-informasi pasar seperti harga pembukaan, penutupan, volume perdagangan, dan selisih harga dari indeks seperti S&P 500, Nasdaq, serta komoditas lain seperti perak, platinum, minyak mentah, dan sebagainya.
+- Target (y) adalah variabel dependen atau nilai yang ingin kita prediksi. Dalam proyek ini, target yang diprediksi adalah harga penutupan emas (gold close), karena emas merupakan indikator utama yang ingin dianalisis pergerakannya.
 ## Split Data
 
 Data dibagi menjadi data latih dan data uji:
 80% data digunakan untuk training
 20% data digunakan untuk testing
 
-## Feature Scaling
-Tidak dilakukan feature scaling karena model yang digunakan (Random Forest Regressor) tidak sensitif terhadap skala fitur.
-## Pemisahan Fitur dan Target
-Setelah fitur-fitur penting berhasil dipilih melalui proses feature selection, langkah selanjutnya adalah memisahkan antara fitur (X) dan target (y).
-- Fitur (X) adalah sekumpulan variabel independen yang digunakan sebagai input model untuk memprediksi sesuatu. Dalam konteks ini, fitur berisi informasi-informasi pasar seperti harga pembukaan, penutupan, volume perdagangan, dan selisih harga dari indeks seperti S&P 500, Nasdaq, serta komoditas lain seperti perak, platinum, minyak mentah, dan sebagainya.
-- Target (y) adalah variabel dependen atau nilai yang ingin kita prediksi. Dalam proyek ini, target yang diprediksi adalah harga penutupan emas (gold close), karena emas merupakan indikator utama yang ingin dianalisis pergerakannya.
 
 ## Model Development
 
-Pada tahap pengembangan model, kami memulai dengan menggunakan model **RandomForestRegressor** tanpa tuning hyperparameter. Model ini memiliki parameter default yang digunakan untuk membangun pohon keputusan secara acak. Berikut adalah langkah-langkah yang diambil dalam pengembangan model:
+### Random Forest Regressor
 
-### Model Awal (Sebelum Tuning)
+Random Forest adalah algoritma ensambel berbasis decision tree yang digunakan untuk melakukan prediksi. Algoritma ini bekerja dengan membangun banyak pohon keputusan dari data latih yang berbeda secara acak (menggunakan teknik bootstrap sampling), lalu hasil prediksinya dirata-rata untuk menghasilkan output akhir.
 
-Pada awalnya, kami menggunakan **RandomForestRegressor** dengan parameter default sebagai berikut:
-- `n_estimators=100`: Jumlah pohon yang digunakan dalam hutan.
-- `max_depth=None`: Tidak ada batasan kedalaman pohon.
-- `min_samples_split=2`: Minimum jumlah sampel yang diperlukan untuk membagi node.
-- `min_samples_leaf=1`: Minimum jumlah sampel yang diperlukan di daun pohon.
+Model pertama yang digunakan adalah RandomForestRegressor dengan parameter default, yaitu:
+- `n_estimators=100` 
+- `max_depth=None` 
+- `min_samples_split=2`
+- `min_samples_leaf=1`
+- `random_state=42`
 
-Setelah model awal dibangun dan dilakukan evaluasi, kami melihat bahwa meskipun model memberikan hasil yang cukup baik, terdapat peluang untuk memperbaiki performa dengan melakukan tuning hyperparameter.
+Setelah itu, dilakukan **hyperparameter tuning** menggunakan GridSearchCV untuk mencari kombinasi parameter terbaik. Parameter yang dicoba:
+- `n_estimators`: [50, 100, 200]
+- `max_depth`: [None, 10, 20]
+- `min_samples_split`: [2, 5]
+- `min_samples_leaf`: [1, 2]
 
-### Tuning Hyperparameter dengan GridSearchCV
-
-Untuk meningkatkan performa model, kami melakukan **hyperparameter tuning** menggunakan **GridSearchCV**. GridSearchCV mencoba berbagai kombinasi parameter yang telah ditentukan, dan memilih parameter terbaik berdasarkan evaluasi cross-validation. Berikut adalah parameter yang dituning:
-- `n_estimators`: Jumlah pohon dalam hutan.
-- `max_depth`: Kedalaman maksimum pohon.
-- `min_samples_split`: Minimum sampel untuk membagi node.
-- `min_samples_leaf`: Minimum sampel di daun pohon.
-
-Setelah tuning menggunakan **GridSearchCV**, parameter terbaik yang ditemukan adalah:
+Hasil terbaik dari tuning menghasilkan model dengan:
 - `n_estimators=200`
 - `max_depth=None`
 - `min_samples_split=2`
 - `min_samples_leaf=1`
 
-### Evaluasi Model Setelah Tuning
-Setelah melakukan tuning, model yang telah diperbarui menunjukkan hasil evaluasi yang lebih baik, dengan **R2 Score** mencapai 0.98, menunjukkan bahwa model ini mampu menjelaskan sebagian besar variasi dalam data. Berikut adalah metrik evaluasi setelah tuning:
-- MAE: 2.3760134593503346
-- MSE: 13.481026697290908
-- RMSE: 3.6716517668878823
-- R2 Score: 0.9830551395542989
-
+Model ini digunakan untuk prediksi akhir karena memberikan performa yang lebih baik dibandingkan model awal dengan parameter default.
 
 ## Evaluation
-📏 Evaluation Metrics
-Untuk mengevaluasi performa model dalam memprediksi harga penutupan emas (gold close), digunakan beberapa metrik regresi berikut:
+### Metrik Evaluasi yang Digunakan
 
-- MAE (Mean Absolute Error): Rata-rata dari selisih absolut antara nilai aktual dan nilai prediksi.
-    Hasil: 2.3899
-    
-- MSE (Mean Squared Error): Rata-rata dari kuadrat selisih antara nilai aktual dan prediksi.
-    Hasil: 13.5483
-    
-- RMSE (Root Mean Squared Error): Akar dari MSE. Metrik ini memberikan penalti lebih besar untuk error yang besar.
-    Hasil: 3.6808
+- **MAE (Mean Absolute Error)**: Mengukur rata-rata selisih absolut antara nilai aktual dan nilai prediksi. Semakin kecil nilainya, semakin akurat model.
+- **MSE (Mean Squared Error)**: Rata-rata kuadrat dari selisih nilai aktual dan prediksi. MSE memberi penalti lebih besar terhadap error yang besar.
+- **RMSE (Root Mean Squared Error)**: Akar dari MSE, memberikan interpretasi error dalam satuan yang sama dengan target.
+- **R² Score (Coefficient of Determination)**: Mengukur seberapa baik variasi data target dijelaskan oleh model. Nilai mendekati 1 menandakan model yang sangat baik.
 
-- R² Score (Coefficient of Determination): Menunjukkan seberapa baik model menjelaskan variabilitas dari data target. Nilai mendekati 1 berarti model sangat baik.
-    Hasil: 0.9829
+### Skema 1: Base Model (Tanpa Tuning)
+
+Model Random Forest Regressor digunakan dengan parameter default (tanpa tuning). Berikut adalah hasil evaluasinya:
+
+- **MAE**: 0.0479  
+- **MSE**: 0.0516  
+- **RMSE**: 0.2273  
+- **R² Score**: 0.9999
 
 🔍 Interpretasi Hasil
 - Hasil evaluasi menunjukkan bahwa model Random Forest Regressor yang telah dituning bekerja sangat baik dalam memprediksi harga emas berdasarkan fitur-fitur yang dipilih.
 
 - Nilai MAE dan RMSE yang rendah menunjukkan bahwa prediksi model cukup akurat dan tidak jauh meleset dari nilai aktual.
 
-- Nilai R² Score sebesar 0.98 menunjukkan bahwa model mampu menjelaskan lebih dari 98% variabilitas dari harga emas.
+- Nilai R² Score sebesar 0.99 menunjukkan bahwa model mampu menjelaskan lebih dari 98% variabilitas dari harga emas.
 
-## Visualisasi
+### Visualisasi
 
 Visualisasi hasil prediksi harga emas dibandingkan dengan harga emas aktual pada data testing menunjukkan bahwa model dapat mengikuti pola harga emas dengan cukup baik. Berikut adalah plot perbandingan antara harga emas aktual dan harga emas yang diprediksi oleh model
 
-![download (2)](https://github.com/user-attachments/assets/8b5fa199-3eab-473d-966c-a491bf3f26df)
+![download (3)](https://github.com/user-attachments/assets/68f40b4d-74c3-4723-ac95-22b049996b37)
+
 
 #### 💼 Relevansi dengan Business Understanding
 Model ini dirancang untuk memprediksi harga penutupan emas berdasarkan beberapa indikator ekonomi penting (seperti nilai tukar USD/CHF, EUR/USD, dan indeks pasar saham). Dengan model yang akurat:
@@ -242,4 +232,4 @@ Ya, model berhasil membangun sistem prediksi harga emas yang cukup akurat dan la
 #### 🧩 Dampak solusi
 Solusi yang diberikan dapat memberikan nilai tambah pada sektor investasi, membantu pelaku pasar mengambil keputusan berbasis data, dan mempermudah prediksi tren harga di masa depan.
 ## Kesimpulan
-Dengan menggunakan Random Forest Regressor dan setelah melakukan hyperparameter tuning, model ini dapat memprediksi harga emas dengan sangat akurat, mencapai R2 Score sebesar 0.98. Prediksi harga emas ini dapat digunakan oleh para investor untuk membuat keputusan yang lebih baik dalam berinvestasi pada komoditas emas.
+Dengan menggunakan Random Forest Regressor dan setelah melakukan hyperparameter tuning, model ini dapat memprediksi harga emas dengan sangat akurat, mencapai R2 Score sebesar 0.99. Prediksi harga emas ini dapat digunakan oleh para investor untuk membuat keputusan yang lebih baik dalam berinvestasi pada komoditas emas.
