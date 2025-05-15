@@ -47,44 +47,56 @@ Jumlah kolom awal:  47 kolom
 Jumlah kolom yang digunakan: 9 kolom
 
 Berikut fitur - fitur yang terdapat pada dataset
-| **Fitur**              | **Deskripsi**                                           |
-|------------------------|----------------------------------------------------------|
-| `date`                 | Tanggal data dicatat                                     |
-| `sp500 open`           | Harga pembukaan indeks S&P 500                           |
-| `sp500 high`           | Harga tertinggi indeks S&P 500                           |
-| `sp500 low`            | Harga terendah indeks S&P 500                            |
-| `sp500 close`          | Harga penutupan indeks S&P 500                           |
-| `sp500 volume`         | Volume perdagangan S&P 500                               |
-| `sp500 high-low`       | Selisih harga tertinggi dan terendah S&P 500            |
-| `nasdaq open`          | Harga pembukaan Nasdaq                                   |
-| `nasdaq high`          | Harga tertinggi Nasdaq                                   |
-| `nasdaq low`           | Harga terendah Nasdaq                                    |
-| `nasdaq close`         | Harga penutupan Nasdaq                                   |
-| `nasdaq volume`        | Volume perdagangan Nasdaq                                |
-| `nasdaq high-low`      | Selisih harga tertinggi dan terendah Nasdaq             |
-| `platinum open`        | Harga pembukaan Platinum                                 |
-| `platinum high`        | Harga tertinggi Platinum                                 |
-| `platinum low`         | Harga terendah Platinum                                  |
-| `platinum close`       | Harga penutupan Platinum                                 |
-| `platinum volume`      | Volume perdagangan Platinum                              |
-| `platinum high-low`    | Selisih harga tertinggi dan terendah Platinum           |
-| `silver open`          | Harga pembukaan Silver                                   |
-| `silver high`          | Harga tertinggi Silver                                   |
-| `silver low`           | Harga terendah Silver                                    |
-| `silver close`         | Harga penutupan Silver                                   |
-| `silver volume`        | Volume perdagangan Silver                                |
-| `silver high-low`      | Selisih harga tertinggi dan terendah Silver             |
-| `crude oil open`       | Harga pembukaan Crude Oil                                |
-| `crude oil high`       | Harga tertinggi Crude Oil                                |
-| `crude oil low`        | Harga terendah Crude Oil                                 |
-| `crude oil close`      | Harga penutupan Crude Oil                                |
-| `crude oil volume`     | Volume perdagangan Crude Oil                             |
-| `crude oil high-low`   | Selisih harga tertinggi dan terendah Crude Oil          |
-| `copper open`          | Harga pembukaan Copper                                   |
-| `copper high`          | Harga tertinggi Copper                                   |
-| `copper low`           | Harga terendah Copper                                    |
-| `copper close`         | Harga penutupan Copper                                   |
-| `copper volume`        | Volume perdagangan Copper
+| **Nama Kolom**         | **Deskripsi**                                                                 |
+|------------------------|-------------------------------------------------------------------------------|
+| `date`                 | Tanggal data dicatat                                                          |
+| `sp500 open`           | Harga pembukaan indeks S&P 500                                                |
+| `sp500 high`           | Harga tertinggi indeks S&P 500                                                |
+| `sp500 low`            | Harga terendah indeks S&P 500                                                 |
+| `sp500 close`          | Harga penutupan indeks S&P 500                                                |
+| `sp500 volume`         | Volume perdagangan S&P 500                                                    |
+| `sp500 high-low`       | Selisih harga tertinggi dan terendah S&P 500                                  |
+| `nasdaq open`          | Harga pembukaan Nasdaq                                                        |
+| `nasdaq high`          | Harga tertinggi Nasdaq                                                        |
+| `nasdaq low`           | Harga terendah Nasdaq                                                         |
+| `nasdaq close`         | Harga penutupan Nasdaq                                                        |
+| `nasdaq volume`        | Volume perdagangan Nasdaq                                                     |
+| `nasdaq high-low`      | Selisih harga tertinggi dan terendah Nasdaq                                   |
+| `us_rates_%`           | Suku bunga acuan AS dalam persentase                                          |
+| `CPI`                  | Consumer Price Index (Indeks Harga Konsumen)                                  |
+| `usd_chf`              | Nilai tukar Dolar AS terhadap Franc Swiss                                     |
+| `eur_usd`              | Nilai tukar Euro terhadap Dolar AS                                            |
+| `GDP`                  | Produk Domestik Bruto (Gross Domestic Product)                                |
+| `silver open`          | Harga pembukaan Silver                                                        |
+| `silver high`          | Harga tertinggi Silver                                                        |
+| `silver low`           | Harga terendah Silver                                                         |
+| `silver close`         | Harga penutupan Silver                                                        |
+| `silver volume`        | Volume perdagangan Silver                                                     |
+| `silver high-low`      | Selisih harga tertinggi dan terendah Silver                                   |
+| `oil open`             | Harga pembukaan Crude Oil                                                     |
+| `oil high`             | Harga tertinggi Crude Oil                                                     |
+| `oil low`              | Harga terendah Crude Oil                                                      |
+| `oil close`            | Harga penutupan Crude Oil                                                     |
+| `oil volume`           | Volume perdagangan Crude Oil                                                  |
+| `oil high-low`         | Selisih harga tertinggi dan terendah Crude Oil                                |
+| `platinum open`        | Harga pembukaan Platinum                                                      |
+| `platinum high`        | Harga tertinggi Platinum                                                      |
+| `platinum low`         | Harga terendah Platinum                                                       |
+| `platinum close`       | Harga penutupan Platinum                                                      |
+| `platinum volume`      | Volume perdagangan Platinum                                                   |
+| `platinum high-low`    | Selisih harga tertinggi dan terendah Platinum                                 |
+| `palladium open`       | Harga pembukaan Palladium                                                     |
+| `palladium high`       | Harga tertinggi Palladium                                                     |
+| `palladium low`        | Harga terendah Palladium                                                      |
+| `palladium close`      | Harga penutupan Palladium                                                     |
+| `palladium volume`     | Volume perdagangan Palladium                                                  |
+| `palladium high-low`   | Selisih harga tertinggi dan terendah Palladium                                |
+| `gold open`            | Harga pembukaan Gold                                                          |
+| `gold high`            | Harga tertinggi Gold                                                          |
+| `gold low`             | Harga terendah Gold                                                           |
+| `gold close`           | Harga penutupan Gold                                                          |
+| `gold volume`          | Volume perdagangan Gold                                                       |
+
 
 
 ### Kondisi Data:
@@ -138,13 +150,66 @@ Kolom usd_chf, eur_usd: 210 missing values
 Solusi:
 Baris-baris yang mengandung missing values dihapus agar model tidak terganggu oleh data yang tidak lengkap.
 
-## Handling Outliers
+# Deteksi dan Penghapusan Outlier dengan Metode IQR
 
-Outlier dicek menggunakan metode Interquartile Range (IQR). Namun, karena data harga emas sangat fluktuatif secara alami, outlier tidak dihapus, agar tetap merepresentasikan kondisi     pasar yang sesungguhnya.
+Dokumentasi ini menjelaskan langkah-langkah untuk mendeteksi dan menghapus outlier pada data numerik menggunakan metode Interquartile Range (IQR).
 
-## Konversi Tipe Data
+---
 
-Kolom date dikonversi menjadi tipe datetime untuk memudahkan analisis waktu bila diperlukan.
+### 1. Menentukan Kolom Numerik
+
+Pertama, tentukan kolom-kolom numerik yang akan dianalisis:
+
+```python
+numerical_cols = ['gold open', 'gold high', 'gold low', 'gold close', 
+                  'gold volume', 'sp500 close', 'nasdaq close', 
+                  'usd_chf', 'eur_usd']
+```
+
+---
+
+###  2. Menghitung Q1, Q3, dan IQR
+
+Hitung nilai kuartil pertama (Q1), kuartil ketiga (Q3), dan rentang interkuartil (IQR) untuk kolom numerik tersebut:
+
+```python
+Q1 = gold[numerical_cols].quantile(0.25)
+Q3 = gold[numerical_cols].quantile(0.75)
+IQR = Q3 - Q1
+```
+
+- **Q1**: nilai batas bawah (25% data berada di bawah ini)
+- **Q3**: nilai batas atas (75% data berada di bawah ini)
+- **IQR**: selisih Q3 dan Q1, mewakili rentang tengah data
+
+---
+
+###  3. Deteksi Outlier
+
+Data yang bernilai lebih kecil dari `Q1 - 1.5 * IQR` atau lebih besar dari `Q3 + 1.5 * IQR` dianggap sebagai outlier:
+
+```python
+outliers = ((gold[numerical_cols] < (Q1 - 1.5 * IQR)) | 
+            (gold[numerical_cols] > (Q3 + 1.5 * IQR)))
+```
+
+`outliers` akan berisi nilai boolean (`True` untuk data outlier).
+
+---
+
+###  4. Menghapus Baris yang Mengandung Outlier
+
+Hapus seluruh baris yang mengandung setidaknya satu outlier:
+
+```python
+data = gold[~outliers.any(axis=1)]
+```
+
+- `outliers.any(axis=1)` menghasilkan `True` untuk baris dengan minimal satu outlier.
+- Tanda `~` membalik nilai sehingga hanya baris tanpa outlier yang disimpan.
+
+---
+
 ## Pemisahan Fitur dan Target
 Setelah fitur-fitur penting berhasil dipilih melalui proses feature selection, langkah selanjutnya adalah memisahkan antara fitur (X) dan target (y).
 - Fitur (X) adalah sekumpulan variabel independen yang digunakan sebagai input model untuk memprediksi sesuatu. Dalam konteks ini, fitur berisi informasi-informasi pasar seperti harga pembukaan, penutupan, volume perdagangan, dan selisih harga dari indeks seperti S&P 500, Nasdaq, serta komoditas lain seperti perak, platinum, minyak mentah, dan sebagainya.
